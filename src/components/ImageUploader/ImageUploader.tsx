@@ -8,6 +8,7 @@ import {
   Center,
   Flex,
   Image,
+  Link,
   Spinner,
   Text,
 } from '@chakra-ui/react';
@@ -87,7 +88,6 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
           borderRadius="5px"
           w="22rem"
           border="1px solid gainsboro"
-          
         >
           <Dropzone onDrop={handleDrop}>
             {({ getRootProps, getInputProps }) => (
@@ -107,7 +107,10 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                     m="9px"
                     mt="9rem"
                     textAlign="center"
-                    _hover={{ cursor: 'pointer', boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px' }}
+                    _hover={{
+                      cursor: 'pointer',
+                      boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
+                    }}
                   >
                     Drag and drop an image file here, or click to select one
                   </Text>
@@ -127,13 +130,24 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                 borderRadius="5px"
                 border="1px solid"
                 p="8px"
+                _hover={{
+                  cursor: 'pointer',
+                  boxShadow:
+                    'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                }}
                 variant="ghost"
                 onClick={handleCompress}
                 fontFamily="montserrat"
               >
                 Compress Image
               </Button>
-              {isLoading && <Spinner />}
+              {isLoading && (
+                <Spinner
+                  borderRadius="5px"
+                  border="1px solid"
+                  p="8px"
+                />
+              )}
             </Flex>
           </Center>
         )}
@@ -145,12 +159,27 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
         {compressedFile && (
           <div>
             <p>Compressed Image:</p>
-            <a
+            <Link
+              textDecor="none"
+              _hover={{ cursor: 'pointer' }}
               href={URL.createObjectURL(compressedFile)}
               download={`mologo_compressed-${file?.name}`}
             >
-              <Button boxShadow="dark-lg">Download Compressed Image</Button>
-            </a>
+              <Button
+                borderRadius="5px"
+                border="1px solid"
+                p="8px"
+                variant="ghost"
+                fontFamily="montserrat"
+                _hover={{
+                  cursor: 'pointer',
+                  boxShadow:
+                    'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                }}
+              >
+                Download Compressed Image
+              </Button>
+            </Link>
             <br />
 
             <Image
