@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Barlow-Thin
+font link: https://fonts.google.com/specimen/Barlow
+font author: Jeremy Tribby
+font author site: https://tribby.com/
+
+
+icon designer: Hysen Drogu
+icon designer link: /hy.drogu
+        
+{"bg-gradient-0":"#410FF8","bg-gradient-1":"#410FF8","icon":"#ffffff","font":"#ffffff","slogan":"#ffffff"}
+      
