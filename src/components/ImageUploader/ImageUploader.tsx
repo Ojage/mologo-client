@@ -79,7 +79,17 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
   return (
     <div className="ImageUploader">
       <Helmet>
-        <title>Image Uploader</title>
+        <title>
+          Mologo Image Compressor - compress your images(jpg/png/png) online for free
+        </title>
+        <meta
+          name="description"
+          content="Compress your images online for free with this simple and easy-to-use image uploader. Drag and drop an image file, compress it, and download it in just a few clicks."
+        ></meta>
+        <meta
+          name="keywords"
+          content="compress image, image uploader, image compression, image compressor, free image compression"
+        ></meta>
       </Helmet>
       <center>
         <Box
@@ -180,6 +190,9 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                 Download Compressed Image
               </Button>
             </Link>
+            <Text>
+              Of size <u> {formatFileSize(compressedFile.size)}</u>
+            </Text>
             <br />
 
             <Image
@@ -189,9 +202,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
               alt="Compressed file"
               className="preview-image"
             />
-            <strong>
-              Of size <u> {formatFileSize(compressedFile.size)}</u>
-            </strong>
+            
           </div>
         )}
       </center>
