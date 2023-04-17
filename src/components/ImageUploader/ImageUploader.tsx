@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Center,
+  Container,
   Flex,
   Image,
   Link,
@@ -84,11 +85,13 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
         image uploader. Drag and drop an image file, compress it, and download
         it in just a few clicks.
       </Text>
-      <Text>For your <i>jpg, png and webp images</i></Text>
+      <Text>
+        For your <i>jpg, png and webp images</i>
+      </Text>
       <Helmet>
         <title>
-          Mologo Image Compressor - compress your images(jpg/png/png/webp) online for
-          free
+          Mologo Image Compressor - compress your images(jpg/png/png/webp)
+          online for free
         </title>
         <meta
           name="description"
@@ -99,160 +102,164 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
           content="compress image, image uploader, image compression, image compressor, free image compression, jpg, png, webp"
         ></meta>
       </Helmet>
-      <center>
-        <Box
-          mt="4rem"
-          h="22rem"
-          borderRadius="5px"
-          w="22rem"
-          border="1px solid gainsboro"
-        >
-          <Dropzone onDrop={handleDrop}>
-            {({ getRootProps, getInputProps }) => (
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {file ? (
-                  <Image
-                    h="22rem"
-                    w="22rem"
-                    objectFit="cover"
-                    src={URL.createObjectURL(file)}
-                    alt="Selected file"
-                    className="preview-image"
-                  />
-                ) : (
-                  <Text
-                    m="9px"
-                    mt="9rem"
-                    textAlign="center"
+      <Center>
+        <Flex mt="4rem">
+          <Box>
+            <Box
+              h="22rem"
+              borderRadius="5px"
+              w="22rem"
+              border="1px solid gainsboro"
+            >
+              <Dropzone onDrop={handleDrop}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    {file ? (
+                      <Image
+                        h="22rem"
+                        borderRadius="5px"
+                        w="22rem"
+                        objectFit="cover"
+                        src={URL.createObjectURL(file)}
+                        alt="Selected file"
+                        className="preview-image"
+                      />
+                    ) : (
+                      <Text
+                        m="9px"
+                        mt="9rem"
+                        textAlign="center"
+                        _hover={{
+                          cursor: 'pointer',
+                          boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
+                        }}
+                      >
+                        Drag and drop an image file here, or click to select one
+                      </Text>
+                    )}
+                  </div>
+                )}
+              </Dropzone>
+            </Box>
+
+            {file && (
+              <Center>
+                <Flex
+                  gap="1rem"
+                  p="13px"
+                >
+                  <Button
+                    borderRadius="5px"
+                    border="1px solid"
+                    p="8px"
                     _hover={{
                       cursor: 'pointer',
-                      boxShadow: 'rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px',
+                      boxShadow:
+                        'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
                     }}
+                    variant="ghost"
+                    onClick={handleCompress}
+                    fontFamily="montserrat"
                   >
-                    Drag and drop an image file here, or click to select one
-                  </Text>
-                )}
-              </div>
+                    Compress Image
+                  </Button>
+                  {isLoading && (
+                    <Spinner
+                      borderRadius="5px"
+                      border="1px solid"
+                      p="8px"
+                    />
+                  )}
+                </Flex>
+              </Center>
             )}
-          </Dropzone>
-        </Box>
-
-        {file && (
-          <Center>
-            <Flex
-              gap="1rem"
-              p="13px"
-            >
-              <Button
+            {file && (
+              <p>
+                {file?.name} of size: {formatFileSize(fileSize)}
+              </p>
+            )}
+          </Box>
+          {compressedFile && (
+            <Container>
+              <Image
+                h="22rem"
+                objectFit="cover"
+                src={URL.createObjectURL(compressedFile)}
                 borderRadius="5px"
-                border="1px solid"
-                p="8px"
-                _hover={{
-                  cursor: 'pointer',
-                  boxShadow:
-                    'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
-                }}
-                variant="ghost"
-                onClick={handleCompress}
-                fontFamily="montserrat"
+                alt="Compressed file"
+                className="preview-image"
+              />
+              <p>Compressed Image:</p>
+              <Link
+                textDecor="none"
+                _hover={{ cursor: 'pointer' }}
+                href={URL.createObjectURL(compressedFile)}
+                download={`mologo_compressed-${file?.name}`}
               >
-                Compress Image
-              </Button>
-              {isLoading && (
-                <Spinner
+                <Button
                   borderRadius="5px"
                   border="1px solid"
                   p="8px"
-                />
-              )}
-            </Flex>
-          </Center>
-        )}
-        {file && (
-          <p>
-            {file?.name} of size: {formatFileSize(fileSize)}
-          </p>
-        )}
-        {compressedFile && (
-          <div>
-            <p>Compressed Image:</p>
-            <Link
-              textDecor="none"
-              _hover={{ cursor: 'pointer' }}
-              href={URL.createObjectURL(compressedFile)}
-              download={`mologo_compressed-${file?.name}`}
-            >
-              <Button
-                borderRadius="5px"
-                border="1px solid"
-                p="8px"
-                variant="ghost"
-                fontFamily="montserrat"
-                _hover={{
-                  cursor: 'pointer',
-                  boxShadow:
-                    'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
-                }}
-              >
-                Download Compressed Image
-              </Button>
-            </Link>
-            <Text>
-              Of size <u> {formatFileSize(compressedFile.size)}</u>
-            </Text>
-            <br />
-
-            <Image
-              h="22rem"
-              objectFit="cover"
-              src={URL.createObjectURL(compressedFile)}
-              alt="Compressed file"
-              className="preview-image"
-            />
-          </div>
-        )}
-        <Flex
-          justifyContent="space-between"
-          w="100vw"
-          position="absolute"
-          bottom={0}
-          left={0}
-          right={0}
-          alignItems="center"
-        >
-          <Text
-            as={Link}
-            textDecor="none"
-            color="grey"
-            href="#"
-            ml="2rem"
-          >
-            Mologo
-          </Text>{' '}
-          <Link
-            m="2rem"
-            textDecor="none"
-            mr="2rem"
-            href="https://www.buymeacoffee.com/salathielojage"
-          >
-            <Button
-              border="1px solid"
-              p="8px"
-              variant="ghost"
-              fontFamily="montserrat"
-              borderRadius={6}
-              _hover={{
-                cursor: 'pointer',
-                boxShadow:
-                  'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
-              }}
-            >
-              You can buy me Eru here!
-            </Button>
-          </Link>
+                  variant="ghost"
+                  fontFamily="montserrat"
+                  _hover={{
+                    cursor: 'pointer',
+                    boxShadow:
+                      'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                  }}
+                >
+                  Download Compressed Image
+                </Button>
+              </Link>
+              <Text>
+                Of size <u> {formatFileSize(compressedFile.size)}</u>
+              </Text>
+              <br />
+            </Container>
+          )}
         </Flex>
-      </center>
+      </Center>
+      <Flex
+        justifyContent="space-between"
+        w="100vw"
+        position="absolute"
+        bottom={0}
+        left={0}
+        right={0}
+        alignItems="center"
+      >
+        <Text
+          as={Link}
+          textDecor="none"
+          color="grey"
+          href="#"
+          ml="2rem"
+        >
+          Mologo
+        </Text>{' '}
+        <Link
+          m="2rem"
+          textDecor="none"
+          mr="2rem"
+          href="https://www.buymeacoffee.com/salathielojage"
+        >
+          <Button
+            border="1px solid"
+            p="8px"
+            variant="ghost"
+            fontFamily="montserrat"
+            borderRadius={6}
+            _hover={{
+              cursor: 'pointer',
+              boxShadow:
+                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+            }}
+          >
+            You can buy me Eru here!
+          </Button>
+        </Link>
+      </Flex>
     </div>
   );
 }
