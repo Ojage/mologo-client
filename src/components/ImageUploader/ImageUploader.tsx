@@ -39,7 +39,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
       formData.append('file', file);
 
       const response = await axios.post(
-        `http://localhost:3000/compress/${file?.type?.split('/')[1]}`,
+        `https://mologo.vercel.app/compress/${file?.type?.split('/')[1]}`,
         formData,
         {
           responseType: 'blob',
