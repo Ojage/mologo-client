@@ -78,9 +78,17 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
   console.log(compressedFile);
   return (
     <div className="ImageUploader">
+      <Text as="h1">Mologo Image Compressor</Text>
+      <Text>
+        Compress your images online for free with this simple and easy-to-use
+        image uploader. Drag and drop an image file, compress it, and download
+        it in just a few clicks.
+      </Text>
+      <Text>For your <i>jpg, png and webp images</i></Text>
       <Helmet>
         <title>
-          Mologo Image Compressor - compress your images(jpg/png/png) online for free
+          Mologo Image Compressor - compress your images(jpg/png/png/webp) online for
+          free
         </title>
         <meta
           name="description"
@@ -88,7 +96,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
         ></meta>
         <meta
           name="keywords"
-          content="compress image, image uploader, image compression, image compressor, free image compression"
+          content="compress image, image uploader, image compression, image compressor, free image compression, jpg, png, webp"
         ></meta>
       </Helmet>
       <center>
@@ -202,9 +210,48 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
               alt="Compressed file"
               className="preview-image"
             />
-            
           </div>
         )}
+        <Flex
+          justifyContent="space-between"
+          w="100vw"
+          position="absolute"
+          bottom={0}
+          left={0}
+          right={0}
+          alignItems="center"
+        >
+          <Text
+            as={Link}
+            textDecor="none"
+            color="grey"
+            href="#"
+            ml="2rem"
+          >
+            Mologo
+          </Text>{' '}
+          <Link
+            m="2rem"
+            textDecor="none"
+            mr="2rem"
+            href="https://www.buymeacoffee.com/salathielojage"
+          >
+            <Button
+              border="1px solid"
+              p="8px"
+              variant="ghost"
+              fontFamily="montserrat"
+              borderRadius={6}
+              _hover={{
+                cursor: 'pointer',
+                boxShadow:
+                  'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+              }}
+            >
+              You can buy me Eru here!
+            </Button>
+          </Link>
+        </Flex>
       </center>
     </div>
   );
