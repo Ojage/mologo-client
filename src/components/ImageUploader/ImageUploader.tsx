@@ -2,6 +2,7 @@ import axios from 'axios';
 import { SetStateAction, useCallback, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { Helmet } from 'react-helmet';
+import { Button, Flex, Spinner } from '@chakra-ui/react';
 
 import './ImageUploader.css';
 
@@ -39,7 +40,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
       formData.append('file', file);
 
       const response = await axios.post(
-        `https://mologo.vercel.app/compress/${file?.type?.split('/')[1]}`,
+        `https://mologo.vercel.app//compress/${file?.type?.split('/')[1]}`,
         formData,
         {
           responseType: 'blob',
@@ -59,7 +60,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
   };
   let fileSize = 0;
   if (file) {
-    fileSize=file.size
+    fileSize = file.size;
   }
   console.log(compressedFile);
   return (
@@ -84,9 +85,14 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
         )}
       </Dropzone>
 
-      {file && <button onClick={handleCompress}>Compress Image</button>}
+      {file && (
+        <Flex gap="1rem">
+          <Button onClick={handleCompress}>Compress Image</Button>
+          <Spinner />
+        </Flex>
+      )}
       <p>
-        {file?.name} of size:{" "} {formatFileSize(fileSize)}
+        {file?.name} of size: {formatFileSize(fileSize)}
       </p>
       {compressedFile && (
         <div>
@@ -104,7 +110,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
             className="preview-image"
           />
           <strong>
-            Of size <u>{" "} {formatFileSize(compressedFile.size)}</u>
+            Of size <u> {formatFileSize(compressedFile.size)}</u>
           </strong>
         </div>
       )}
