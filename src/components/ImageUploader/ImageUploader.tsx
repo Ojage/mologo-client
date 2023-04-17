@@ -12,6 +12,8 @@ export interface ImageUploaderProps {
 
 export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
   const [file, setFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const [compressedFile, setCompressedFile] = useState<File | null>(null);
 
   const handleDrop = useCallback(
@@ -35,12 +37,13 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
   }
 
   const handleCompress = async () => {
+    setIsLoading(true);
     if (file) {
       const formData = new FormData();
       formData.append('file', file);
 
       const response = await axios.post(
-        `https://mologo.vercel.app//compress/${file?.type?.split('/')[1]}`,
+        `https://mologo.vercel.app/compress/${file?.type?.split('/')[1]}`,
         formData,
         {
           responseType: 'blob',
@@ -56,6 +59,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
       });
 
       setCompressedFile(compressedFile);
+      setIsLoading(false);
     }
   };
   let fileSize = 0;
@@ -87,8 +91,13 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
 
       {file && (
         <Flex gap="1rem">
-          <Button onClick={handleCompress}>Compress Image</Button>
-          <Spinner />
+          <Button
+            variant="ghost"
+            onClick={handleCompress}
+          >
+            Compress Image
+          </Button>
+          {isLoading && <Spinner />}
         </Flex>
       )}
       <p>
