@@ -101,6 +101,8 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
           name="keywords"
           content="compress image, image uploader, image compression, image compressor, free image compression, jpg, png, webp"
         ></meta>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8617916630762602"
+     crossOrigin="anonymous"></script>
       </Helmet>
       <Center>
         <Flex mt="4rem">
