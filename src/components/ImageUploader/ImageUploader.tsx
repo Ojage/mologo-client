@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 
 import './ImageUploader.css';
-
+import bg from "../../assets/images/6306486.jpg"
 export interface ImageUploaderProps {
   prop?: string;
 }
@@ -79,7 +79,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
   console.log(compressedFile);
   return (
     <div className="ImageUploader">
-      <Text as="h1">Mologo Image Compressor</Text>
+      {/* <Text as="h1">Mologo Image Compressor</Text>
       <Text>
         Compress your images online for free with this simple and easy-to-use
         image uploader. Drag and drop an image file, compress it, and download
@@ -87,7 +87,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
       </Text>
       <Text>
         For your <i>jpg, png and webp images</i>
-      </Text>
+      </Text> */}
       <Helmet>
         <title>
           Mologo Image Compressor - compress your images(jpg/png/png/webp)
@@ -104,14 +104,14 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8617916630762602"
      crossOrigin="anonymous"></script>
       </Helmet>
-      <Center>
-        <Flex mt="4rem">
+        <Flex>
           <Box>
             <Box
-              h="22rem"
-              borderRadius="5px"
-              w="22rem"
-              border="1px solid gainsboro"
+              h="40vh"
+              w="100%"
+              border="0.5px inset white"
+              backgroundImage={bg}
+              backgroundSize="cover"
             >
               <Dropzone onDrop={handleDrop}>
                 {({ getRootProps, getInputProps }) => (
@@ -120,7 +120,6 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                     {file ? (
                       <Image
                         h="22rem"
-                        borderRadius="5px"
                         w="22rem"
                         objectFit="cover"
                         src={URL.createObjectURL(file)}
@@ -128,9 +127,12 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                         className="preview-image"
                       />
                     ) : (
+                      <Box>
                       <Text
                         m="9px"
                         mt="9rem"
+                        color="white"
+                        fontFamily="Righteous"
                         textAlign="center"
                         _hover={{
                           cursor: 'pointer',
@@ -139,6 +141,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                       >
                         Drag and drop an image file here, or click to select one
                       </Text>
+                      </Box>
                     )}
                   </div>
                 )}
@@ -188,7 +191,6 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                 h="22rem"
                 objectFit="cover"
                 src={URL.createObjectURL(compressedFile)}
-                borderRadius="5px"
                 alt="Compressed file"
                 className="preview-image"
               />
@@ -221,7 +223,6 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
             </Container>
           )}
         </Flex>
-      </Center>
       <Flex
         justifyContent="space-between"
         w="100vw"
