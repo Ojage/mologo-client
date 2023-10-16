@@ -1,10 +1,17 @@
-import { Box, Button, HStack, Text } from '@chakra-ui/react';
+import { Box, Button, VStack, Text } from '@chakra-ui/react';
 import { ImageUploader } from '../components';
+import Footer from '../components/Footer/Footer';
+import CTAWithVid from '../components/CTA/CTAWithVid';
+import FeaturesSection from '../components/Features/Features';
+import Testimonials from '../components/Testimonials/Testimonials';
 
 const Landing = () => {
  return (
-   <HStack w="100%"  alignItems="center">
-    <Box minW="50%" h="40vh" pl="3rem">
+   <VStack w="100%"  alignItems="center">
+    <CTAWithVid />
+    <FeaturesSection />
+    <Testimonials />
+    {/* <Box minW="50%" h="40vh" pl="3rem">
         <Box maxW="30vw" pt="4rem">
         <Box fontFamily="montserrat" w="fit-content" p="5" border="1px solid" borderRadius="3" bg="#fff" color="black" fontSize="12px">
             Free up Weight </Box>
@@ -21,8 +28,8 @@ const Landing = () => {
     </Box>
     <Box maxW="50%">
     <ImageUploader />
-    </Box>
-   </HStack>
+    </Box> */}
+   </VStack>
  )
 }
 

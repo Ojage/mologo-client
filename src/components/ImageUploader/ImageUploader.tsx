@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SetStateAction, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { Helmet } from 'react-helmet';
 import {
@@ -13,9 +13,8 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import bg from "../../assets/images/6306486.jpg";
 
-import './ImageUploader.css';
-import bg from "../../assets/images/6306486.jpg"
 export interface ImageUploaderProps {
   prop?: string;
 }
@@ -23,16 +22,13 @@ export interface ImageUploaderProps {
 export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const [compressedFile, setCompressedFile] = useState<File | null>(null);
 
-  const handleDrop = useCallback(
-    (acceptedFiles: SetStateAction<File | null>[]) => {
-      setFile(acceptedFiles[0]);
-      setCompressedFile(null);
-    },
-    [],
-  );
+  const handleDrop = useCallback((acceptedFiles: File[]) => {
+    setFile(acceptedFiles[0]);
+    setCompressedFile(null);
+  }, []);
+
   function formatFileSize(bytes: number): string {
     const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     let unitIndex = 0;
@@ -57,7 +53,7 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
         formData,
         {
           responseType: 'blob',
-        },
+        }
       );
 
       const compressedBlob = new Blob([response.data], {
@@ -72,67 +68,52 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
       setIsLoading(false);
     }
   };
+
   let fileSize = 0;
   if (file) {
     fileSize = file.size;
   }
-  console.log(compressedFile);
+
   return (
     <div className="ImageUploader">
-      {/* <Text as="h1">Mologo Image Compressor</Text>
-      <Text>
-        Compress your images online for free with this simple and easy-to-use
-        image uploader. Drag and drop an image file, compress it, and download
-        it in just a few clicks.
-      </Text>
-      <Text>
-        For your <i>jpg, png and webp images</i>
-      </Text> */}
       <Helmet>
-        <title>
-          Mologo Image Compressor - compress your images(jpg/png/png/webp)
-          online for free
-        </title>
-        <meta
-          name="description"
-          content="Compress your images online for free with this simple and easy-to-use image uploader. Drag and drop an image file, compress it, and download it in just a few clicks."
-        ></meta>
-        <meta
-          name="keywords"
-          content="compress image, image uploader, image compression, image compressor, free image compression, jpg, png, webp"
-        ></meta>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8617916630762602"
-     crossOrigin="anonymous"></script>
+        <title>Mologo Image Compressor - Compress Your Images (jpg/png/webp) Online for Free</title>
+        <meta name="description" content="Compress your images online for free with this simple and easy-to-use image uploader. Drag and drop an image file, compress it, and download it in just a few clicks." />
+        <meta name="keywords" content="compress image, image uploader, image compression, image compressor, free image compression, jpg, png, webp" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8617916630762602"
+          crossOrigin="anonymous"
+        ></script>
       </Helmet>
-        <Flex>
-          <Box>
-            <Box
-              h="40vh"
-              w="100%"
-              border="0.5px inset white"
-              backgroundImage={bg}
-              backgroundSize="cover"
-            >
-              <Dropzone onDrop={handleDrop}>
-                {({ getRootProps, getInputProps }) => (
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    {file ? (
-                      <Image
-                        h="22rem"
-                        w="22rem"
-                        objectFit="cover"
-                        src={URL.createObjectURL(file)}
-                        alt="Selected file"
-                        className="preview-image"
-                      />
-                    ) : (
-                      <Box>
+      <Flex>
+        <Box>
+          <Box
+            h="40vh"
+            w="100%"
+            border="0.5px inset white"
+            backgroundImage={`url(${bg})`}
+            backgroundSize="cover"
+          >
+            <Dropzone onDrop={handleDrop}>
+              {({ getRootProps, getInputProps }) => (
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {file ? (
+                    <Image
+                      h="22rem"
+                      w="22rem"
+                      objectFit="cover"
+                      src={URL.createObjectURL(file)}
+                      alt="Selected file"
+                      className="preview-image"
+                    />
+                  ) : (
+                    <Box>
                       <Text
                         m="9px"
                         mt="9rem"
                         color="white"
-                        fontFamily="Righteous"
                         textAlign="center"
                         _hover={{
                           cursor: 'pointer',
@@ -141,127 +122,77 @@ export function ImageUploader({ prop = 'default value' }: ImageUploaderProps) {
                       >
                         Drag and drop an image file here, or click to select one
                       </Text>
-                      </Box>
-                    )}
-                  </div>
-                )}
-              </Dropzone>
-            </Box>
-
-            {file && (
-              <Center>
-                <Flex
-                  gap="1rem"
-                  p="13px"
-                >
-                  <Button
-                    borderRadius="5px"
-                    border="1px solid"
-                    p="8px"
-                    _hover={{
-                      cursor: 'pointer',
-                      boxShadow:
-                        'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
-                    }}
-                    variant="ghost"
-                    onClick={handleCompress}
-                    fontFamily="montserrat"
-                  >
-                    Compress Image
-                  </Button>
-                  {isLoading && (
-                    <Spinner
-                      borderRadius="5px"
-                      border="1px solid"
-                      p="8px"
-                    />
+                    </Box>
                   )}
-                </Flex>
-              </Center>
-            )}
-            {file && (
-              <p>
-                {file?.name} of size: {formatFileSize(fileSize)}
-              </p>
-            )}
+                </div>
+              )}
+            </Dropzone>
           </Box>
-          {compressedFile && (
-            <Container>
-              <Image
-                h="22rem"
-                objectFit="cover"
-                src={URL.createObjectURL(compressedFile)}
-                alt="Compressed file"
-                className="preview-image"
-              />
-              <p>Compressed Image:</p>
-              <Link
-                textDecor="none"
-                _hover={{ cursor: 'pointer' }}
-                href={URL.createObjectURL(compressedFile)}
-                download={`mologo_compressed-${file?.name}`}
-              >
+          {file && (
+            <Center>
+              <Flex gap="1rem" p="13px">
                 <Button
                   borderRadius="5px"
                   border="1px solid"
                   p="8px"
-                  variant="ghost"
-                  fontFamily="montserrat"
                   _hover={{
                     cursor: 'pointer',
                     boxShadow:
                       'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
                   }}
+                  variant="ghost"
+                  onClick={handleCompress}
+                  fontFamily="montserrat"
                 >
-                  Download Compressed Image
+                  Compress Image
                 </Button>
-              </Link>
-              <Text>
-                Of size <u> {formatFileSize(compressedFile.size)}</u>
-              </Text>
-              <br />
-            </Container>
+                {isLoading && <Spinner borderRadius="5px" border="1px solid" p="8px" />}
+              </Flex>
+            </Center>
           )}
-        </Flex>
-      <Flex
-        justifyContent="space-between"
-        w="100vw"
-        position="absolute"
-        bottom={0}
-        left={0}
-        right={0}
-        alignItems="center"
-      >
-        <Text
-          as={Link}
-          textDecor="none"
-          color="grey"
-          href="#"
-          ml="2rem"
-        >
-          Mologo
-        </Text>{' '}
-        <Link
-          m="2rem"
-          textDecor="none"
-          mr="2rem"
-          href="https://www.buymeacoffee.com/salathielojage"
-        >
-          <Button
-            border="1px solid"
-            p="8px"
-            variant="ghost"
-            fontFamily="montserrat"
-            borderRadius={6}
-            _hover={{
-              cursor: 'pointer',
-              boxShadow:
-                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
-            }}
-          >
-            You can buy me Eru here!
-          </Button>
-        </Link>
+          {file && (
+            <p>
+              {file?.name} of size: {formatFileSize(fileSize)}
+            </p>
+          )}
+        </Box>
+        {compressedFile && (
+          <Container>
+            <Image
+              h="22rem"
+              objectFit="cover"
+              src={URL.createObjectURL(compressedFile)}
+              alt="Compressed file"
+              className="preview-image"
+            />
+            <p>Compressed Image:</p>
+            <Link
+              textDecor="none"
+              _hover={{ cursor: 'pointer' }}
+              href={URL.createObjectURL(compressedFile)}
+              download={`mologo_compressed-${file?.name}`}
+            >
+              <Button
+                borderRadius="5px"
+                border="1px solid"
+                p="8px"
+                variant="ghost"
+                fontFamily="montserrat"
+                _hover={{
+                  cursor: 'pointer',
+                  boxShadow:
+                    'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                }}
+              >
+                Download Compressed Image
+              </Button>
+            </Link>
+            <Text>
+              Of size <u> {formatFileSize(compressedFile.size)}</u>
+            </Text>
+            <br />
+          </Container>
+        )}
       </Flex>
     </div>
   );

@@ -1,4 +1,5 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
+import React from "react";
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
@@ -63,17 +64,36 @@ const Entry = ({ entry, depth }: { entry: TEntry; depth: number }) => {
     </Box>
   );
 };
+
+type TFeature = {
+  componentTitle: string;
+}
+class Feature extends React.Component<{}, { componentTitle: TFeature["componentTitle"] }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { componentTitle: props.componentTitle };
+  }
+
+  render() {
+    return (
+      <Box
+        m="1rem"
+        p="0.5rem"
+        boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
+        maxW="40vw"
+      >
+        <h1>{this.state.componentTitle}</h1>
+        {files.children.map((entry) => (
+          <Entry key={entry.name} entry={entry} depth={0} />
+        ))}
+      </Box>
+    );
+  }
+}
 const Features = () => {
   return (
-    <Box>
-      <Box m="1rem" p="0.5rem" boxShadow="rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px" maxW="40vw">
-      <h1>
-        Tree Browser Component
-      </h1>
-      {files.children.map((entry) => (
-        <Entry key={entry.name} entry={entry} depth={0} />
-      ))}
-      </Box>
+    <Box ml="2rem">
+      {/* <Feature componentTitle="Tree Browser Component" /> */}
     </Box>
   );
 };
