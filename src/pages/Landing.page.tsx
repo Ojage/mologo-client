@@ -1,5 +1,6 @@
 import { Box, Button, VStack, Text } from '@chakra-ui/react';
 import { ImageUploader } from '../components';
+import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer/Footer';
 import CTAWithVid from '../components/CTA/CTAWithVid';
 import FeaturesSection from '../components/Features/Features';
@@ -8,6 +9,16 @@ import Testimonials from '../components/Testimonials/Testimonials';
 const Landing = () => {
  return (
    <VStack w="100%"  alignItems="center">
+    <Helmet>
+        <title>Mologo Image Compressor - Compress Your Images (jpg/png/webp) Online for Free</title>
+        <meta name="description" content="Compress your images online for free with this simple and easy-to-use image uploader. Drag and drop an image file, compress it, and download it in just a few clicks." />
+        <meta name="keywords" content="compress image, image uploader, image compression, image compressor, free image compression, jpg, png, webp" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8617916630762602"
+          crossOrigin="anonymous"
+        ></script>
+      </Helmet>
     <CTAWithVid />
     <FeaturesSection />
     <Testimonials />

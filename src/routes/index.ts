@@ -8,6 +8,7 @@ export enum ROUTE {
   BLOG = "/blog",
   PRICING = "/pricing/",
   CONTACT = "/contact/",
+  UPLOADNEW = "/upload-new/",
   LOGIN = "/login",
   SIGNUP = "/signup",
   FORGOT_PASSWORD = "/forgot-password",

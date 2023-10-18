@@ -29,6 +29,7 @@ import Pricing from "../pages/Pricing/Pricing.page";
 // import Students from "../pages/Students/Students.page";
 import Blog from "../pages/Blog/Blog.page";
 import Landing from "../pages/Landing.page";
+import UploadNew from "../pages/UploadNew/UploadNew";
 // import ForgotPassword from "../pages/auth/ForgotPassword";/
 
 const routes: IRoute[] = [
@@ -39,6 +40,13 @@ const routes: IRoute[] = [
     exact: true,
     selected: true,
   },
+  {
+    path: ROUTE.UPLOADNEW,
+    name: 'UploadNew',
+    element: UploadNew,
+    exact: true,
+    selected: true,
+  }, 
   {
     path: ROUTE.FEATURES,
     name: 'Features',

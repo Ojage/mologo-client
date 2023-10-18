@@ -17,10 +17,15 @@ import {
   Card,
 } from "@chakra-ui/react";
 import { ImageUploader } from "../../components";
+import { useNavigate } from "react-router";
 
 export default function CTAWithVid() {
+  const navigate = useNavigate()
   return (
-    <Container maxW={"7xl"}>
+    <Container
+      fontFamily="Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen'"
+      maxW={"7xl"}
+    >
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}
@@ -29,6 +34,7 @@ export default function CTAWithVid() {
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading
+            fontFamily="Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen'"
             lineHeight={1.1}
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
@@ -122,15 +128,14 @@ export default function CTAWithVid() {
               top={"50%"}
               transform={"translateX(-50%) translateY(-50%)"}
             />
-            <Card
+            {/* <ImageUploader /> */}
+            {/* <Card
               h="100%"
               w="100%"
-              backgroundImage="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-            >
-              <Box maxW="100%">
-                <ImageUploader />
-              </Box>
-            </Card>
+              // backgroundImage="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
+            > */}
+            <ImageUploader />
+            {/* </Card> */}
             {/* <Image
               alt={"Hero Image"}
               fit={"cover"}
