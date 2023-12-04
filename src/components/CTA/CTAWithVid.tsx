@@ -16,20 +16,16 @@ import {
   useColorModeValue,
   Card,
 } from "@chakra-ui/react";
-import { ImageUploader } from "../../components";
+import ImageUploader from "../../components/ImageUploader/ImageUploader";
 import { useImageContext } from "../../ImageContext";
+import { useNavigate } from "react-router";
+import "../../assets/styles/components/buttonsStyles.css";
 
 export default function CTAWithVid() {
   const { setSelectedImage } = useImageContext(); // Use the hook to access the context
-
-  // When the user selects an image (e.g., from file input)
-  const handleImageSelect = (image: File) => {
-    console.log(image)
-    setSelectedImage(image); // Set the selected image in the context
-  }
   return (
     <Container
-      fontFamily="Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen'"
+      fontFamily="Montserrat"
       maxW={"7xl"}
     >
       <Stack
@@ -40,12 +36,13 @@ export default function CTAWithVid() {
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading
-            fontFamily="Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen'"
+            fontFamily="Montserrat"
             lineHeight={1.1}
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
           >
             <Text
+              color="black"
               as={"span"}
               position={"relative"}
               _after={{
@@ -54,15 +51,16 @@ export default function CTAWithVid() {
                 height: "30%",
                 position: "absolute",
                 bottom: 1,
+                opacity: ".7",
                 left: 0,
-                bg: "red.400",
+                bg: "#4A4AF8",
                 zIndex: -1,
               }}
             >
               Optimize now,
             </Text>
             <br />
-            <Text as={"span"} color={"red.400"}>
+            <Text as={"span"} color={"#4A4AF8"}>
               speed up your site!
             </Text>
           </Heading>
@@ -77,22 +75,15 @@ export default function CTAWithVid() {
             direction={{ base: "column", sm: "row" }}
           >
             <Button
-              rounded="full"
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              colorScheme={"red"}
-              bg={"#410FF8"}
-              _hover={{ bg: "#3000dc" }}
+              className="button-86"
+              color="white"
             >
               Get started
             </Button>
             <Button
-              rounded={"full"}
-              size={"lg"}
+              variant="button2"
+              size={"xl"}
               fontWeight={"normal"}
-              px={6}
-              leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
             >
               How It Works
             </Button>
@@ -140,7 +131,10 @@ export default function CTAWithVid() {
               w="100%"
               // backgroundImage="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
             > */}
-            <ImageUploader onImageSelected={handleImageSelect} />
+            <Box h="100%"
+            >
+            <ImageUploader />
+            </Box>
             {/* </Card> */}
             {/* <Image
               alt={"Hero Image"}

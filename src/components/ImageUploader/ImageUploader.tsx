@@ -1,42 +1,37 @@
-import axios from "axios";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { Box, Button, Card, Text, Image } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../assets/app/hooks";
+import { addImage } from "../../features/imageUtilitySlice";
 
-import { Helmet } from "react-helmet";
-import {
-  Box,
-  Button,
-  Card,
-  Center,
-  Container,
-  Flex,
-  Image,
-  Link,
-  Spinner,
-  Text,
-} from "@chakra-ui/react";
-import bg from "../../assets/images/6306486.jpg";
-import { useNavigate } from "react-router";
-
-export interface ImageUploaderProps {
-  onImageSelected: (file: File) => void;
+interface AcceptedFile extends File {
+  preview: string;
 }
 
-export function ImageUploader({ onImageSelected }: ImageUploaderProps) {
+const ImageUploader = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState<AcceptedFile | null>(null);
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    accept: { "image/*": ["jpg", "jpeg", "png", "gif", "webp"] }, // Specify acceptable image file types
+    accept: { "image/*": ["jpg", "jpeg", "png", "gif", "webp"] },
+    maxFiles: 1,
   });
 
-  const files = acceptedFiles.map((file: File) => {
-    return(
-    <li key={file.name}>{file.name} - {formatFileSize(file.size)}</li>
-  )});
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      const file = acceptedFiles[0] as AcceptedFile;
+      file.preview = URL.createObjectURL(file);
+      setSelectedImage(file);
+      dispatch(addImage(file));
+      navigate("/upload-new");
+    }
+  }, [acceptedFiles, dispatch, navigate]);
 
-  function formatFileSize(bytes: number): string {
+  const formatFileSize = (bytes: number): string => {
     const units = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    let unitIndex = 0;
     let size = bytes;
-    handleFileSelection(acceptedFiles[0])
+    let unitIndex = 0;
 
     while (size >= 1024 && unitIndex < units.length - 1) {
       size /= 1024;
@@ -44,13 +39,6 @@ export function ImageUploader({ onImageSelected }: ImageUploaderProps) {
     }
 
     return `${size.toFixed(2)} ${units[unitIndex]}`;
-  }
-
-  const navigate = useNavigate();
-
-  // Handle file selection and pass it to the calling component
-  const handleFileSelection = (file: File) => {
-    onImageSelected(file);
   };
 
   return (
@@ -58,30 +46,25 @@ export function ImageUploader({ onImageSelected }: ImageUploaderProps) {
       <Box textAlign="center" m="0 auto">
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
-          <Button
-            rounded="full"
-            onClick={() => navigate("/upload-new")}
-            size={"lg"}
-            fontWeight={"bolder"}
-            px={7}
-            py={8}
-            colorScheme={"red"}
-            bg={"#410FF8"}
-            _hover={{ bg: "#3000dc" }}
-          >
+          <Button size="xxl" fontWeight="bolder" px={7} py={8} className="button-86" color="white">
             Upload Picture
           </Button>
           <Text fontSize="lg" fontWeight={600} color="gray.500">
-            or drop a file,
+            or drop a file
           </Text>
         </div>
-        {acceptedFiles.length > 0 && (
-          <aside>
+        {selectedImage && (
+          <Box display="flex" flexDirection="column" alignItems="center">
             <h4>Files</h4>
-            <ul>{files}</ul>
-          </aside>
+            <Image src={selectedImage.preview} alt="Uploaded" />
+            <Text fontSize="sm" color="gray.600">
+              {selectedImage.name} - {formatFileSize(selectedImage.size)}
+            </Text>
+          </Box>
         )}
       </Box>
     </Card>
   );
-}
+};
+
+export default ImageUploader;

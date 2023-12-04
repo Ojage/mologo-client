@@ -5,6 +5,8 @@ import LandingHeader from "./layouts/headers/Landing.header";
 import routes from "./routes/routes";
 import ScrollToTop from "./ScrollToTop";
 import Footer from "./components/Footer/Footer";
+import { mologoTheme } from "./assets/styles/theme";
+import "./App.css";
 
 // Component to conditionally render the LandingHeader based on route
 function HeaderRoutes() {
@@ -21,7 +23,7 @@ function HeaderRoutes() {
 function App() {
   const { colorMode } = useColorMode();
   return (
-    <ChakraProvider>
+      <ChakraProvider theme={mologoTheme}>
     <BrowserRouter>
       <Box className="App" color={colorMode === "light" ? "white" : "#5f6368"}>
         {/* Render the HeaderRoutes component */}
