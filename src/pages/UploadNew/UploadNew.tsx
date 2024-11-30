@@ -19,7 +19,7 @@ const UploadNew = () => {
         formData.append("file", image2Compress);
 
         const response = await axios.post(
-          `https://mologo.vercel.app/compress/${image2Compress?.type?.split("/")[1]}`,
+          `https://kindpic.vercel.app/compress/${image2Compress?.type?.split("/")[1]}`,
           formData,
           {
             responseType: "blob",

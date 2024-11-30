@@ -26,7 +26,7 @@ export default function CTAWithVid() {
   return (
     <Container
       fontFamily="Montserrat"
-      maxW={"7xl"}
+      maxW={"8xl"}
     >
       <Stack
         align={"center"}
@@ -57,11 +57,11 @@ export default function CTAWithVid() {
                 zIndex: -1,
               }}
             >
-              Optimize now,
+              Enhance your Images,
             </Text>
             <br />
             <Text as={"span"} color={"#4A4AF8"}>
-              speed up your site!
+              Optimally & Efficiently
             </Text>
           </Heading>
 
@@ -78,14 +78,7 @@ export default function CTAWithVid() {
               className="button-86"
               color="white"
             >
-              Get started
-            </Button>
-            <Button
-              variant="button2"
-              size={"xl"}
-              fontWeight={"normal"}
-            >
-              How It Works
+              Go Pro
             </Button>
           </Stack>
         </Stack>

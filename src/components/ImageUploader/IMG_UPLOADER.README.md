@@ -82,7 +82,7 @@
               textDecor="none"
               _hover={{ cursor: 'pointer' }}
               href={URL.createObjectURL(compressedFile)}
-              download={`mologo_compressed-${file?.name}`}
+              download={`kindpic_compressed-${file?.name}`}
             >
               <Button
                 borderRadius="5px"

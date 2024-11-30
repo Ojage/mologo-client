@@ -120,7 +120,7 @@ export default function WithSpeechBubbles() {
             <TestimonialContent>
               <TestimonialHeading>Efficient Collaborating</TestimonialHeading>
               <TestimonialText>
-                Mologo has greatly improved our collaboration and efficiency.
+                kindpic has greatly improved our collaboration and efficiency.
                 Our team can now optimize images effortlessly.
               </TestimonialText>
             </TestimonialContent>
@@ -136,7 +136,7 @@ export default function WithSpeechBubbles() {
             <TestimonialContent>
               <TestimonialHeading>Intuitive Design</TestimonialHeading>
               <TestimonialText>
-                Mologo's intuitive design has made image optimization a breeze.
+                kindpic's intuitive design has made image optimization a breeze.
                 We can now easily adapt images to various formats.
               </TestimonialText>
             </TestimonialContent>
@@ -152,7 +152,7 @@ export default function WithSpeechBubbles() {
             <TestimonialContent>
               <TestimonialHeading>Mindblowing Service</TestimonialHeading>
               <TestimonialText>
-                Mologo provides a mindblowing service. Our web performance has
+                kindpic provides a mindblowing service. Our web performance has
                 significantly improved, thanks to optimized images.
               </TestimonialText>
             </TestimonialContent>

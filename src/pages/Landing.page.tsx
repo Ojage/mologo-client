@@ -9,7 +9,7 @@ const Landing = () => {
  return (
    <VStack w="100%"  alignItems="center" overflowX="hidden">
     <Helmet>
-        <title>Mologo Image Compressor - Compress Your Images (jpg/png/webp) Online for Free</title>
+        <title>KindPic - Remove Backgrounds and Compress Images Easily (jpg/png/webp) Online for Free</title>
         <meta name="description" content="Compress your images online for free with this simple and easy-to-use image uploader. Drag and drop an image file, compress it, and download it in just a few clicks." />
         <meta name="keywords" content="compress image, image uploader, image compression, image compressor, free image compression, jpg, png, webp" />
         <script
@@ -26,7 +26,7 @@ const Landing = () => {
         <Box fontFamily="montserrat" w="fit-content" p="5" border="1px solid" borderRadius="3" bg="#fff" color="black" fontSize="12px">
             Free up Weight </Box>
         <Text mt={0} as="h1" fontFamily="'Righteous', cursive" fontSize='36px'>
-            Mologo Photos
+            kindpic Photos
         </Text>
         <Text>Compress your images online for free with this simple and easy-to-use
         image uploader.</Text>

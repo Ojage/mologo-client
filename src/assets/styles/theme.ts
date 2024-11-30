@@ -38,7 +38,7 @@ const background = { _light: white, _dark: black };
 //   useSystemColorMode: false,
 // };
 
-export const mologoTheme = extendTheme({
+export const kindpicTheme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {

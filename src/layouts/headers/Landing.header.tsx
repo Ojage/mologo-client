@@ -15,7 +15,7 @@ const LandingHeader = () => {
     // >
     //   <HStack pl="34" h="6vh" gap={22}>
     //     <Box as={Link} to="/" h="50px">
-    //       <Image borderRadius="50%" src={logo} alt="logo-of-mologo" h="100%" />
+    //       <Image borderRadius="50%" src={logo} alt="logo-of-kindpic" h="100%" />
     //     </Box>
     //     <HStack gap={8}>
     //       {navRoutes.map((navRoute) => {

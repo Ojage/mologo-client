@@ -63,7 +63,7 @@ export default function Navbar() {
           justify={{ base: "center", md: "start" }}
         >
           <Box as={Link} to="/">
-            <Image h="40px" borderRadius="50%" src={logo} alt="mologo logo" />
+            <Image h="40px" borderRadius="50%" src={logo} alt="kindpic logo" />
           </Box>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>

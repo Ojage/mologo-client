@@ -78,10 +78,10 @@ export default function FeaturesSection() {
     >
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
         <Heading fontSize={{ base: "2xl", sm: "4xl" }} fontWeight={"bold"}>
-          Key Features of Mologo
+          Key Features of kindpic
         </Heading>
         <Text color={"gray.600"} fontSize={{ base: "sm", sm: "lg" }}>
-          Optimize your images effortlessly with Mologo's powerful features.
+          Optimize your images effortlessly with kindpic's powerful features.
           Compress, convert, and sync your images to boost your website's
           performance.
         </Text>
